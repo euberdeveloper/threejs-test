@@ -24,7 +24,7 @@ export default defineComponent({
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
 
-    camera.position.z = 5;
+    camera.position.z = 2;
 
     const animate = function () {
       requestAnimationFrame(animate);
@@ -36,6 +36,7 @@ export default defineComponent({
     };
 
     animate();
+    setInterval(() => camera.position.z += 0.01, 20);
   },
 });
 </script>
