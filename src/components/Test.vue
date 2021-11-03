@@ -16,7 +16,9 @@ export default defineComponent({
     const container = this.$refs.container as HTMLDivElement;
 
     const scene = new THREE.Scene();
-    scene.add(new THREE.AxesHelper(5));
+    const axesHelper = new THREE.AxesHelper(5);
+    axesHelper.setColors(new THREE.Color(0xff0000), new THREE.Color(0x00ff00), new THREE.Color(0x0000ff));
+    scene.add();
 
     const light = new THREE.SpotLight();
     light.position.set(40, 0, 100);
@@ -27,6 +29,11 @@ export default defineComponent({
     light1.position.set(-20, -20, -20);
     light1.power = 1000;
     scene.add(light1);
+
+    const light2 = new THREE.SpotLight();
+    light2.position.set(0, 200, 0);
+    light2.power = 10;
+    scene.add(light2);
 
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.set(100, 0, 100);
@@ -56,7 +63,7 @@ export default defineComponent({
 
     const loader = new STLLoader();
     loader.load(
-      '/models/levetta_test.stl',
+      '/models/levetta_texture_test.stl',
       function (geometry) {
         const mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
